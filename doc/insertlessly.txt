@@ -1,0 +1,114 @@
+*insertlessly.txt*  Waste no more time entering insert mode just to insert enters!
+
+Author:  Barry Arthur <barry.arthur@gmail.com>  *insertlessly-author*
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                    *insertlessly*
+
+Are you sick of having to go into insert mode -just- to enter a
+newline? Do you wish Vim had an even easier way of entering several
+newlines at once? Are you sick of people on #vim telling you:
+>
+  "just use o<Esc> and get over it already!"?
+<
+
+Well, wish no more! Because, -this- plugin is for you!!1!
+
+How much would you pay for this awesome functionality? One dollar?
+Maybe even two dollars?!
+
+Well, wait! Don't answer yet, because... There's More!
+
+Have you ever wanted to be able to Backspace in normal mode? Of course
+you have! Who hasn't?! Well, now you can! Absolutely free, with the
+insertlessly plugin! Try it today! Go to a line and just start banging
+away on the Backspace key and watch those characters fade away! You
+don't even need to be in insert mode! It even wraps around the start
+of lines! And it even does so intelligently! Even!
+
+Yes! That's right! Two awesome features in one humble little plugin.
+
+Now, how much would you pay?! Just think of the hours of frustrating
+time this plugin will save you, not to mention the wear and tear on
+your Escape key.
+
+Get it today!
+
+FEATURES                                        *insertlessly-features*
+
+ENTER ~
+
+Pressing <Enter> (by default, but can be customised. See
+|insertlessly-configuration|) in normal mode will insert a newline in
+the current line at the cursor position. If the cursor is at the end
+of the line, this will push the character there to the next line. If
+you wanted to open a new line below this one instead, use the
+|insertlessly-opennewline| feature instead.
+
+Multiple newlines can be inserted by preceding the <Enter> with a
+count.
+
+OPEN NEWLINE ~
+
+Pressing <S-Enter> (by default, but can be customised. See
+|insertlessly-configuration|) in normal mode will insert a newline
+below the current line without affecting the line the cursor is
+currently on.
+
+Multiple newlines can be appended by preceding the <S-Enter> with a
+count.
+
+BACKSPACE ~
+
+Backspace will delete the character to the left of the cursor,
+deleting over the beginning of line when pressed in column 1.
+
+If you're in column one of an empty line and you press Backspace, it
+will not leave a trailing space before the cursor, as in:
+(where * is the cursor position)
+>
+  foo
+  *
+
+  foo*
+<
+
+But if you're on a line with text, a space will separate the newly
+joined lines:
+>
+  foo
+  *x
+
+  foo x*
+<
+
+CONFIGURATION                                   *insertlessly-configuration*
+
+Some terminals (like gnome-terminal) can't distinguish between
+<Enter>, <S-Enter> and <C-Enter>. If you're afflicted by such a
+situation, you can customise the actual key used to perform the
+various insertlessly functions. For example, to map the
+|insertlessly-opennewline| feature (which is, by default, mapped to
+<S-Enter>) to <Space>, put the following in your ~/.vimrc :
+>
+  nmap <Space> <Plug>OpenNewline
+<
+
+The following map targets are available for remapping in your ~/.vimrc :
+>
+  <Plug>BSPastBOL
+  <Plug>InsertNewline
+  <Plug>OpenNewline
+<
+
+ISSUES                                          *insertlessly-issues*
+
+Vim veterans could potentially get confused when using your
+installation of Vim. Please report any repeatable instances of this.
+
+Should we have a vnoremap to just delete visually selected text when
+the user presses Backspace?
+
+ vim:tw=78:ts=8:ft=help:norl:
