@@ -27,6 +27,7 @@ set cpo&vim
 nnoremap <silent> <Plug>BSPastBOL      :<C-U>call <SID>backspacepastBOL()<CR>
 nnoremap <silent> <Plug>InsertNewline  i<Enter><Esc>
 nnoremap <silent> <Plug>OpenNewline    o<Esc>
+nnoremap <expr> <Del> ((col('.')+1) == col('$')) ? "gJ" : "<Del>"
 
 if !hasmapto('<Plug>InsertNewline')
   nmap <Enter> <Plug>InsertNewline
