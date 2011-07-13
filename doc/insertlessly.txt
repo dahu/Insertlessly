@@ -84,6 +84,12 @@ joined lines:
   foo x*
 <
 
+DELETE ~
+
+Pressing Delete (<Del>) in any column except the last on a line will perform a
+normal <Del> operation. In the last column of a line, it will join the
+subsequent line to the end of the current line (using |gJ|).
+
 CONFIGURATION                                   *insertlessly-configuration*
 
 Some terminals (like gnome-terminal) can't distinguish between
