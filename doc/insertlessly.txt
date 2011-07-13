@@ -60,6 +60,10 @@ currently on.
 Multiple newlines can be appended by preceding the <S-Enter> with a
 count.
 
+NOTE: <S-Enter> will most probably not work from terminal Vim. In this case,
+you will want to change the default mapping as explained in
+|insertlessly-configuration|.
+
 BACKSPACE ~
 
 Backspace will delete the character to the left of the cursor,
@@ -86,7 +90,7 @@ joined lines:
 
 DELETE ~
 
-Pressing Delete (<Del>) in any column except the last on a line will perform a
+Pressing Delete ( <Del> ) in any column except the last on a line will perform a
 normal <Del> operation. In the last column of a line, it will join the
 subsequent line to the end of the current line (using |gJ|).
 
