@@ -69,8 +69,8 @@ endfunction " }}}1
 function! s:CleanupLine()
   if g:insertlessly_cleanup_trailing_ws == 1
     let line = getline('.')
-    if line =~ '\s*$'
-      call setline('.', substitute(line, '\s*$', '', ''))
+    if line =~ '\s\+$'
+      call setline('.', substitute(line, '\s\+$', '', ''))
     endif
   endif
 endfunction
