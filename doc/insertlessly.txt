@@ -113,6 +113,15 @@ The following map targets are available for remapping in your ~/.vimrc :
   <Plug>OpenNewline
 <
 
+AUTOMATICALLY DELETING TRAILING WHITESPACE~
+
+Insertlessly will automatically delete trailing whitespace at the end of the
+current line when you leave insert mode. To disable this feature, add the
+following line to your $HOME/.vimrc file:
+>
+  let g:insertlessly_cleanup_trailing_ws = 0
+<
+
 ISSUES                                          *insertlessly-issues*
 
 Vim veterans could potentially get confused when using your

@@ -9,7 +9,7 @@
 "
 " Licensed under the same terms as Vim itself.
 " ============================================================================
-let g:insertlessly_version = 0.1
+let g:insertlessly_version = 0.2
 
 " Exit quickly when: {{{1
 " - this plugin was already loaded or disabled
@@ -22,6 +22,18 @@ let g:loaded_insertlessly = 1
 " Setup {{{1
 let s:cpo_save = &cpo
 set cpo&vim
+
+" Options
+if !exists('g:insertlessly_cleanup_trailing_ws')
+  let g:insertlessly_cleanup_trailing_ws = 1
+endif
+
+" Auto Commands {{{1
+
+augroup Insertlessly
+  au!
+  au InsertLeave * call <SID>CleanupLine()
+augroup END
 
 " Maps {{{1
 nnoremap <silent> <Plug>BSPastBOL      :<C-U>call <SID>backspacepastBOL()<CR>
@@ -53,6 +65,15 @@ function! s:backspacepastBOL()
     normal! X
   endif
 endfunction " }}}1
+
+function! s:CleanupLine()
+  if g:insertlessly_cleanup_trailing_ws == 1
+    let line = getline('.')
+    if line =~ '\s*$'
+      call setline('.', substitute(line, '\s*$', '', ''))
+    endif
+  endif
+endfunction
 
 " Teardown {{{1
 let &cpo = s:cpo_save
