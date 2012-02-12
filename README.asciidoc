@@ -1,5 +1,5 @@
 Insertlessly
-============
+------------
 
 __Waste no more time entering insert mode just to insert enters!__
 
