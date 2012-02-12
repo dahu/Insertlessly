@@ -1,0 +1,58 @@
+Insertlessly
+============
+
+__Waste no more time entering insert mode just to insert enters!__
+
+Are you sick of having to go into insert mode *just* to enter a
+newline? Do you wish Vim had an even easier way of entering several
+newlines at once? Are you sick of people on #vim telling you:
+
+__"just use o<Esc> and get over it already!"?__
+
+
+Well, wish no more! Because, *this* plugin is for you!!1!
+
+How much would you pay for this awesome functionality? One dollar?
+Maybe even two dollars?!
+
+Well, wait! Don't answer yet, because... There's More!
+
+Have you ever wanted to be able to +Backspace+ in normal mode? Of course
+you have! Who hasn't?! Well, now you can! Absolutely free, with the
+Insertlessly plugin! Try it today! Go to a line and just start banging
+away on the +Backspace+ key and watch those characters fade away! You
+don't even need to be in insert mode! It even wraps around the start
+of lines! And it even does so intelligently! Even!
+
+And that's not all, because for no extra charge, we've added the same
+intelligent, line-spanning delete action you've seen on the +Backspace+ key
+to...  the +Delete+ key! Amazing, isn't it? Now you can delete characters AND
+join lines with one simple key press. Can life in Vim *get* any better?!
+
+Yes! That's right! Two, no, _three_ awesome features in one humble little
+plugin!
+
+Now, how much would you pay?! Just think of the hours of frustration
+Insertlessly will save you, not to mention the wear and tear on your +Escape+
+key.
+
+You might be thinking that you can already do all these things yourself in Vim
+and that you don't need this amazingly friendly little plugin, but... There's
+_even_ more!
+
+That's right! Not only does Insertlessly let you insert enters without
+entering insert; not only does it backspace and delete across lines
+intelligently, but... Insertlessly *also* cleans up any trailing whitespace in
+your document (or, optionally, only the current line) when leaving insert
+mode! Tired of seeing rubbish spaces left strewn around other people's text
+files? Wish you had a magic wand that would clean all that crap up for you?
+Well, Insertlessly is *here* for you!
+
+And wait! __I know, right?!__ It gets even *better*! Yes! All of these
+features are customisable with plugin option variables
+(++g:insertlessly_<option>++) and ++<plug>++ maps for all default key
+bindings. If it got any better, I'd need to bundle rainbows and
+unicorns with this plugin!
+
+Quick! Grab your Vim plugin manager and get Insertlessly today! :D
+

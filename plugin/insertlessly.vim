@@ -1,6 +1,6 @@
 " insertlessly.vim - Waste no more time entering insert mode just to insert enters!
 " Author:       Barry Arthur <barry dot arthur at gmail dot com>
-" Last Updated: 18 Jan 2012
+" Last Updated: 12 Feb 2012
 "
 " See insertlessly.txt for help.  This can be accessed by doing
 "
@@ -9,7 +9,7 @@
 "
 " Licensed under the same terms as Vim itself.
 " ============================================================================
-let g:insertlessly_version = 0.3
+let g:insertlessly_version = 0.4
 
 " Exit quickly when: {{{1
 " - this plugin was already loaded or disabled
@@ -99,15 +99,16 @@ endfunction " }}}1
 
 function! s:InsertNewline()
   if (col('.') + 1) == col('$')
-    normal! o
+    exe "normal! " . v:count1 . "o"
   else
-    exe "normal! i\<Enter>"
+    exe "normal! " . v:count1 . "i\<Enter>"
   endif
 endfunction
 
 function! s:OpenNewline()
-  startinsert
-  call feedkeys("\<c-o>o")
+  exe "normal! " . v:count1 . "o"
+  "startinsert
+  "call feedkeys("\<c-o>o")
 endfunction
 
 function! s:DeleteAtEOL()

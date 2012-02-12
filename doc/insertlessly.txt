@@ -1,6 +1,6 @@
 *insertlessly.txt*  Waste no more time entering insert mode just to insert enters!
-
-Author:  Barry Arthur <barry.arthur@gmail.com>  *insertlessly-author*
+                                         *insertlessly-author*
+Author:  Barry Arthur <barry dot arthur at gmail dot com>
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
@@ -23,18 +23,41 @@ Well, wait! Don't answer yet, because... There's More!
 
 Have you ever wanted to be able to Backspace in normal mode? Of course
 you have! Who hasn't?! Well, now you can! Absolutely free, with the
-insertlessly plugin! Try it today! Go to a line and just start banging
+Insertlessly plugin! Try it today! Go to a line and just start banging
 away on the Backspace key and watch those characters fade away! You
 don't even need to be in insert mode! It even wraps around the start
 of lines! And it even does so intelligently! Even!
 
-Yes! That's right! Two awesome features in one humble little plugin.
+And that's not all, because for no extra charge, we've added the same
+intelligent, line-spanning delete action you've seen on the Backspace key
+to...  the Delete key! Amazing, isn't it? Now you can delete characters AND
+join lines with one simple key press. Can life in Vim -get- any better?!
 
-Now, how much would you pay?! Just think of the hours of frustrating
-time this plugin will save you, not to mention the wear and tear on
-your Escape key.
+Yes! That's right! Two, no, -three- awesome features in one humble little
+plugin!
 
-Get it today!
+Now, how much would you pay?! Just think of the hours of frustration
+Insertlessly will save you, not to mention the wear and tear on your Escape
+key.
+
+You might be thinking that you can already do all these things yourself in Vim
+and that you don't need this amazingly friendly little plugin, but... There's
+-even- more!
+
+That's right! Not only does Insertlessly let you insert enters without
+entering insert; not only does it backspace and delete across lines
+intelligently, but... Insertlessly -also- cleans up any trailing whitespace in
+your document (or, optionally, only the current line) when leaving insert
+mode.  Tired of seeing rubbish spaces left strewn around other people's text
+files?  Wish you had a magic wand that would clean all that crap up for you?
+Well, Insertlessly is -here- for you!
+
+And wait! I know, right?! It gets even -better-! Yes! All of these features
+are customisable with plugin option variables (g:insertlessly_<option>) and
+<plug> maps for all default key bindings. If it got any better, I'd need to
+bundle rainbows and unicorns with this plugin!
+
+Quick! Grab your Vim plugin manager and get Insertlessly today! :D
 
 FEATURES                                        *insertlessly-features*
 
@@ -85,21 +108,46 @@ joined lines:
   foo
   *x
 
-  foo x*
+  foo *x
 <
 
 DELETE ~
 
 Pressing Delete ( <Del> ) in any column except the last on a line will perform a
 normal <Del> operation. In the last column of a line, it will join the
-subsequent line to the end of the current line (using |gJ|).
+subsequent line to the end of the current line (like using |J|).
+
+CLEANUP TRAILING WHITESPACE~
+
+Two options control whether trailing whitespace is removed when leaving insert
+mode:
+
+  g:insertlessly_cleanup_trailing_ws  --  current line only
+  g:insertlessly_cleanup_all_ws       --  all lines in the buffer
+
+These are both on by defdault but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_cleanup_trailing_ws = 0
+  let g:insertlessly_cleanup_all_ws = 0
+<
+
+ADJUST CURSOR POSITION~
+
+Some vimmers requested that the cursor position remain in normal mode where it
+is seen in insert mode (effectively doing an |l| when leaving insert mode.)
+The author appreciates a healthy dose of heresy, but feels even his
+tree-hugging hippiedom doesn't extend so far as to leave this on by default.
+If you want this behaviour, add this to your ~/.vimrc :
+>
+  let g:insertlessly_adjust_cursor = 1
+<
 
 CONFIGURATION                                   *insertlessly-configuration*
 
 Some terminals (like gnome-terminal) can't distinguish between
 <Enter>, <S-Enter> and <C-Enter>. If you're afflicted by such a
 situation, you can customise the actual key used to perform the
-various insertlessly functions. For example, to map the
+various Insertlessly functions. For example, to map the
 |insertlessly-opennewline| feature (which is, by default, mapped to
 <S-Enter>) to <Space>, put the following in your ~/.vimrc :
 >
@@ -111,15 +159,7 @@ The following map targets are available for remapping in your ~/.vimrc :
   <Plug>BSPastBOL
   <Plug>InsertNewline
   <Plug>OpenNewline
-<
-
-AUTOMATICALLY DELETING TRAILING WHITESPACE~
-
-Insertlessly will automatically delete trailing whitespace at the end of the
-current line when you leave insert mode. To disable this feature, add the
-following line to your $HOME/.vimrc file:
->
-  let g:insertlessly_cleanup_trailing_ws = 0
+  <Plug>DelAtEOL
 <
 
 ISSUES                                          *insertlessly-issues*
