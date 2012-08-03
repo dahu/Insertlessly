@@ -141,6 +141,7 @@ function! s:CleanupAllWhitespace()
   if g:insertlessly_cleanup_all_ws != 0
     let pos = getpos('.')
     silent! %s/\s\+$//
+    call histdel("search", -1)
     call setpos('.', pos)
   else
     call s:CleanupLine()
