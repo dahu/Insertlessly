@@ -1,6 +1,6 @@
 *insertlessly.txt*  Waste no more time entering insert mode just to insert enters!
                                          *insertlessly-author*
-Author:  Barry Arthur <barry dot arthur at gmail dot com>
+Author:  Barry Arthur <barry.arthur@gmail.com>
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
@@ -34,7 +34,12 @@ to...  the Delete key! Amazing, isn't it? Now you can delete characters AND
 join lines with one simple key press. Can life in Vim -get- any better?!
 
 Yes! That's right! Two, no, -three- awesome features in one humble little
-plugin!
+plugin! But wait! There's more! Insertlessly even allows you to provide a
+count to the Enter, Backspace and Delete actions to perform several in one go!
+
+                    Need ten newlines? 10<enter> -kapow!-
+      Wanna backspace over a dozen dirty digits? 12<backspace> -shazam!-
+         Gotta suck the face off a ratty identifier? 4<del> -fzzzt!-
 
 Now, how much would you pay?! Just think of the hours of frustration
 Insertlessly will save you, not to mention the wear and tear on your Escape
@@ -51,6 +56,13 @@ your document (or, optionally, only the current line) when leaving insert
 mode.  Tired of seeing rubbish spaces left strewn around other people's text
 files?  Wish you had a magic wand that would clean all that crap up for you?
 Well, Insertlessly is -here- for you!
+
+As if all that wasn't amazing enough, hold onto your keyboards because there's
+-even- more! Insertlessly will tirelessly clean up after you so you don't
+leave messy trailing spaces all over your files. It will also insert enters
+and backspace & delete across lines, multiple times at a time! And now, for an
+unlimited time offer, Insertlessly also inserts spaces in the same multitime
+mannar you've come to love from enter, backspace and delete. Insertlessly!
 
 And wait! I know, right?! It gets even -better-! Yes! All of these features
 are customisable with plugin option variables (g:insertlessly_<option>) and
@@ -73,6 +85,11 @@ you wanted to open a new line below this one instead, use the
 Multiple newlines can be inserted by preceding the <Enter> with a
 count.
 
+This feature is on by default but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_insert_newlines = 0
+<
+
 OPEN NEWLINE ~
 
 Pressing <S-Enter> (by default, but can be customised. See
@@ -87,10 +104,18 @@ NOTE: <S-Enter> will most probably not work from terminal Vim. In this case,
 you will want to change the default mapping as explained in
 |insertlessly-configuration|.
 
+This feature is on by default but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_open_newlines = 0
+<
+
+
 BACKSPACE ~
 
-Backspace will delete the character to the left of the cursor,
-deleting over the beginning of line when pressed in column 1.
+Pressing <Backspace> will delete the character to the left of the cursor.
+Multiple backspaces can be performed at once by preceding the <Backspace> with
+a count. Backspace will delete over the beginning of line when pressed in
+column 1.
 
 If you're in column one of an empty line and you press Backspace, it
 will not leave a trailing space before the cursor, as in:
@@ -111,11 +136,36 @@ joined lines:
   foo *x
 <
 
+This feature is on by default but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_backspace_past_bol = 0
+<
+
+
 DELETE ~
 
-Pressing Delete ( <Del> ) in any column except the last on a line will perform a
-normal <Del> operation. In the last column of a line, it will join the
-subsequent line to the end of the current line (like using |J|).
+Pressing Delete ( <Del> ) in any column except the last on a line will perform
+a normal <Del> operation. Multiple deletes can be performed by preceding the
+<Del> with a count. In the last column of a line, it will join the subsequent
+line to the end of the current line (like using |J|).
+
+This feature is on by default but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_delete_at_eol_joins = 0
+<
+
+SPACE~
+
+Pressing <Space> will insert space characters before the cursor position.
+Multiple spaces can be inserted by preceding the <Space> with a count.
+
+NOTE: If <Space> is your |mapleader| then you'll want to change the default
+mapping as explained in |insertlessly-configuration|.
+
+This feature is on by default but can be disabled in your ~/.vimrc:
+>
+  let g:insertlessly_insert_spaces = 0
+<
 
 CLEANUP TRAILING WHITESPACE~
 
@@ -149,9 +199,9 @@ Some terminals (like gnome-terminal) can't distinguish between
 situation, you can customise the actual key used to perform the
 various Insertlessly functions. For example, to map the
 |insertlessly-opennewline| feature (which is, by default, mapped to
-<S-Enter>) to <Space>, put the following in your ~/.vimrc :
+<S-Enter>) to <BSlash>, put the following in your ~/.vimrc :
 >
-  nmap <Space> <Plug>OpenNewline
+  nmap <BSlash> <Plug>OpenNewline
 <
 
 The following map targets are available for remapping in your ~/.vimrc :
@@ -160,6 +210,7 @@ The following map targets are available for remapping in your ~/.vimrc :
   <Plug>InsertNewline
   <Plug>OpenNewline
   <Plug>DelAtEOL
+  <Plug>InsertSpace
 <
 
 ISSUES                                          *insertlessly-issues*

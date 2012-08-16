@@ -9,7 +9,7 @@
 "
 " Licensed under the same terms as Vim itself.
 " ============================================================================
-let g:insertlessly_version = 0.4
+let g:insertlessly_version = 0.5
 
 " Exit quickly when: {{{1
 " - this plugin was already loaded or disabled
@@ -52,6 +52,10 @@ if !exists('g:insertlessly_adjust_cursor')
   let g:insertlessly_adjust_cursor = 0
 endif
 
+if !exists('g:insertlessly_insert_spaces')
+  let g:insertlessly_insert_spaces = 1
+endif
+
 " Auto Commands {{{1
 
 augroup Insertlessly
@@ -64,6 +68,7 @@ nnoremap <silent> <Plug>BSPastBOL      :<c-u>call <SID>BackspacePastBOL()<CR>
 nnoremap <silent> <Plug>InsertNewline  :<c-u>call <SID>InsertNewline()<CR>
 nnoremap <silent> <Plug>OpenNewline    :<c-u>call <SID>OpenNewline()<CR>
 nnoremap <silent> <Plug>DelAtEOL       :<c-u>call <SID>DeleteAtEOL()<CR>
+nnoremap <silent> <Plug>InsertSpace    :<c-u>call <SID>InsertSpace()<CR>
 
 if !hasmapto('<Plug>InsertNewline') && g:insertlessly_insert_newlines != 0
   nmap <Enter> <Plug>InsertNewline
@@ -76,6 +81,9 @@ if !hasmapto('<Plug>BSPastBOL') && g:insertlessly_backspace_past_bol != 0
 endif
 if !hasmapto('<Plug>DelAtEOL') && g:insertlessly_delete_at_eol_joins != 0
   nmap <Del> <Plug>DelAtEOL
+endif
+if !hasmapto('<Plug>InsertSpace') && g:insertlessly_insert_spaces != 0
+  nmap <Space> <Plug>InsertSpace
 endif
 
 " Functions {{{1
@@ -90,12 +98,12 @@ function! s:BackspacePastBOL()
         normal! kgJ
       endif
     else
-      normal! X
+      exe "normal! " . v:count1 . "X"
     endif
   else
-    normal! X
+    exe "normal! " . v:count1 . "X"
   endif
-endfunction " }}}1
+endfunction
 
 function! s:InsertNewline()
   " Special buffer types (help, quickfix, command window, etc.) have buftype set
@@ -112,8 +120,6 @@ endfunction
 
 function! s:OpenNewline()
   exe "normal! " . v:count1 . "o"
-  "startinsert
-  "call feedkeys("\<c-o>o")
 endfunction
 
 function! s:DeleteAtEOL()
@@ -125,10 +131,10 @@ function! s:DeleteAtEOL()
     if ((col == 1) && (col == eol_col)) || (((col + 1) == eol_col) && (line != eob_line))
       normal! J
     else
-      exe "normal! \<del>"
+      exe "normal! " . v:count1 . "x"
     endif
   else
-    exe "normal! \<del>"
+    exe "normal! " . v:count1 . "x"
   endif
 endfunction
 
@@ -166,6 +172,10 @@ function! s:AdjustCursor()
       endif
     endif
   endif
+endfunction
+
+function! s:InsertSpace()
+  silent exe "normal! " . v:count1 . "i \<esc>l"
 endfunction
 
 " Teardown {{{1
