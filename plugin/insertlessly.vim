@@ -162,7 +162,6 @@ function! s:CleanupLine()
     let lines = getline("'[", "']")
     call setline(line("'["),
                  \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
-    endif
   endif
 endfunction
 
