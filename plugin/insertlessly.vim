@@ -161,8 +161,7 @@ function! s:CleanupLine()
   if g:insertlessly_cleanup_trailing_ws != 0
     let lines = getline("'[", "']")
     call setline(line("'["),
-                 \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
-    endif
+          \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
   endif
 endfunction
 
