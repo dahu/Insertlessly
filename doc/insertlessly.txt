@@ -52,10 +52,10 @@ and that you don't need this amazingly friendly little plugin, but... There's
 That's right! Not only does Insertlessly let you insert enters without
 entering insert; not only does it backspace and delete across lines
 intelligently, but... Insertlessly -also- cleans up any trailing whitespace in
-your document (or, optionally, only the current line) when leaving insert
-mode.  Tired of seeing rubbish spaces left strewn around other people's text
-files?  Wish you had a magic wand that would clean all that crap up for you?
-Well, Insertlessly is -here- for you!
+your document (or, optionally, only the newly inserted lines) when leaving
+insert mode.  Tired of seeing rubbish spaces left strewn around other people's
+text files?  Wish you had a magic wand that would clean all that crap up for
+you? Well, Insertlessly is -here- for you!
 
 As if all that wasn't amazing enough, hold onto your keyboards because there's
 -even- more! Insertlessly will tirelessly clean up after you so you don't
