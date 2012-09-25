@@ -159,9 +159,9 @@ endfunction
 
 function! s:CleanupLine()
   if g:insertlessly_cleanup_trailing_ws != 0
-    let line = getline('.')
-    if line =~ '\s\+$'
-      call setline('.', substitute(line, '\s\+$', '', ''))
+    let lines = getline("'[", "']")
+    call setline(line("'["),
+                 \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
     endif
   endif
 endfunction
