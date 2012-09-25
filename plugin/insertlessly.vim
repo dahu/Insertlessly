@@ -146,9 +146,12 @@ endfunction
 function! s:CleanupAllWhitespace()
   if g:insertlessly_cleanup_all_ws != 0
     let pos = getpos('.')
+    let markpos = [ getpos("'["), getpos("']") ]
     silent! %s/\s\+$//
     call histdel("search", -1)
     call setpos('.', pos)
+    call setpos("'[", markpos[0])
+    call setpos("']", markpos[1])
   else
     call s:CleanupLine()
   endif
@@ -156,10 +159,9 @@ endfunction
 
 function! s:CleanupLine()
   if g:insertlessly_cleanup_trailing_ws != 0
-    let line = getline('.')
-    if line =~ '\s\+$'
-      call setline('.', substitute(line, '\s\+$', '', ''))
-    endif
+    let lines = getline("'[", "']")
+    call setline(line("'["),
+                 \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
   endif
 endfunction
 
