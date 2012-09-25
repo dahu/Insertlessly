@@ -146,9 +146,12 @@ endfunction
 function! s:CleanupAllWhitespace()
   if g:insertlessly_cleanup_all_ws != 0
     let pos = getpos('.')
+    let markpos = [ getpos("'["), getpos("']") ]
     silent! %s/\s\+$//
     call histdel("search", -1)
     call setpos('.', pos)
+    call setpos("'[", markpos[0])
+    call setpos("']", markpos[1])
   else
     call s:CleanupLine()
   endif
