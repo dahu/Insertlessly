@@ -105,9 +105,19 @@ function! s:BackspacePastBOL()
   endif
 endfunction
 
+function! s:getcmdwintype()
+  if exists('*getcmdwintype')
+    return getcmdwintype()
+  elseif bufname('%') == '[Command Line]'
+    return 0
+  else
+    return 1
+  endif
+endfunction
+
 function! s:InsertNewline()
   " Special buffer types (help, quickfix, command window, etc.) have buftype set
-  if &buftype == ""
+  if (&buftype == "") || (&buftype == 'nofile' && s:getcmdwintype() == '')
     if (col('.') + 1) == col('$')
       exe "normal! " . v:count1 . "o"
     else
