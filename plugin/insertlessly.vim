@@ -149,8 +149,10 @@ function! s:DeleteAtEOL()
 endfunction
 
 function! s:Insertlessly_LeaveInsert()
-  call s:CleanupAllWhitespace()
-  call s:AdjustCursor()
+  augroup InsertlesslyCleanup
+    au!
+    au CursorMoved,CursorHold * call s:CleanupAllWhitespace() | call s:AdjustCursor() | au!
+  augroup END
 endfunction
 
 function! s:CleanupAllWhitespace()
