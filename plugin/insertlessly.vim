@@ -151,19 +151,13 @@ endfunction
 function! s:Insertlessly_LeaveInsert()
   augroup InsertlesslyCleanup
     au!
-    au CursorMoved,CursorHold * call s:CleanupAllWhitespace() | call s:AdjustCursor() | au!
+    au CursorMoved,CursorHold * call s:CleanupAllWhitespace() | call s:AdjustCursor() | au! InsertlesslyCleanup
   augroup END
 endfunction
 
 function! s:CleanupAllWhitespace()
   if g:insertlessly_cleanup_all_ws != 0
-    let pos = getpos('.')
-    let markpos = [ getpos("'["), getpos("']") ]
-    silent! %s/\s\+$//
-    call histdel("search", -1)
-    call setpos('.', pos)
-    call setpos("'[", markpos[0])
-    call setpos("']", markpos[1])
+    call insertlessly#cleanup_all_whitespace()
   else
     call s:CleanupLine()
   endif
@@ -171,9 +165,7 @@ endfunction
 
 function! s:CleanupLine()
   if g:insertlessly_cleanup_trailing_ws != 0
-    let lines = getline("'[", "']")
-    call setline(line("'["),
-          \ map(lines, "substitute(v:val, '\\s\\+$', '', '')"))
+    call insertlessly#cleanup_line()
   endif
 endfunction
 
